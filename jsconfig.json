@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./",
+    "paths": {
+      "@images/*": [
+        "src/assets/images/*"
+      ],
+      "@icons/*": [
+        "src/assets/images/icons/*"
+      ],
+      "@videos/*": [
+        "src/assets/videos/*"
+      ],
+      "@fonts/*": [
+        "src/assets/fonts/*"
+      ],
+      "@boot": [
+        "src/common/boot.js"
+      ],
+      "@functions": [
+        "src/common/functions.js"
+      ],
+      "@routes": [
+        "src/common/routes.js"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@context": [
+        "src/context/AppContext.jsx"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@stylesComponents/*": [
+        "src/styles/components/*"
+      ],
+      "@stylesPages/*": [
+        "src/styles/pages/*"
+      ],
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

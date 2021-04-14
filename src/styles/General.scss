@@ -1,0 +1,26 @@
+@import "./Mixins.scss";
+
+/* General styles */
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  font-size: 10px;
+}
+
+input,
+select,
+textarea,
+button {
+  background-color: transparent;
+  border: 0;
+}
+button {
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+button:active {
+  transform: translateY(4px);
+}

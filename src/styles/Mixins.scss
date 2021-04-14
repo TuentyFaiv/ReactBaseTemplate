@@ -1,0 +1,42 @@
+@mixin for-size($size) {
+  @if $size == phone-only {
+    @media (max-width: 599px) {
+      @content;
+    }
+  } @else if $size == tablet-portrait {
+    @media (max-width: 750px) {
+      @content;
+    }
+  } @else if $size == tablet-landscape {
+    @media (max-width: 900px) {
+      @content;
+    }
+  } @else if $size == desktop {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  } @else if $size == big-desktop {
+    @media (max-width: 1800px) {
+      @content;
+    }
+  }
+}
+@mixin flex($justify) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+}
+@mixin grid($columns, $gap) {
+  display: grid;
+  grid-template-columns: ($columns);
+  grid-gap: ($gap);
+}
+@mixin text($size, $weight, $line-height) {
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+}
