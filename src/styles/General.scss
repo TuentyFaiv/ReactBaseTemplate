@@ -3,11 +3,13 @@
 /* General styles */
 * {
   box-sizing: border-box;
-  outline: none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
 }
 
 html {
-  font-size: 10px;
+  font-size: 62.5%;
 }
 
 input,
