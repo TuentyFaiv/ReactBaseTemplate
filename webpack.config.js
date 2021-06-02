@@ -1,17 +1,21 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable global-require */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
-  devtool: "source-map",
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: "[name].[contenthash].js",
-    assetModuleFilename: 'assets/images/[hash][ext][query]'
+    path: path.resolve(__dirname, "dist"),
+    filename: "js/[name].[contenthash].js",
+    assetModuleFilename: "assets/images/[hash][ext][query]",
+    chunkFilename: "js/[id].[chunkhash].js",
+    publicPath: "/"
   },
   resolve: {
     extensions: [".js", ".jsx"],
@@ -25,35 +29,48 @@ module.exports = {
       "@routes": path.resolve(__dirname, "src/common/routes.js"),
       "@components": path.resolve(__dirname, "src/components"),
       "@context": path.resolve(__dirname, "src/context/AppContext.jsx"),
+      "@hooks": path.resolve(__dirname, "src/hooks/index.js"),
+      "@hoc": path.resolve(__dirname, "src/hoc"),
       "@pages": path.resolve(__dirname, "src/pages"),
       "@stylesComponents": path.resolve(__dirname, "src/styles/components"),
-      "@stylesPages": path.resolve(__dirname, "src/styles/pages"),
+      "@stylesPages": path.resolve(__dirname, "src/styles/pages")
     }
   },
   optimization: {
     minimize: true,
-    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()]
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: ["babel-loader", "eslint-loader"]
+        use: ["babel-loader"]
       },
       {
         test: /\.s?css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
       },
       {
-        test: /\.(png|jpg)$/,
+        test: /\.(png|jpg|gif)$/,
         use: {
           loader: "url-loader",
           options: {
             limit: 100000,
             name: "[name].[contenthash].[ext]",
             outputPath: "./assets/images/",
-            publicPath: "./assets/images/",
+            esModule: false
+          }
+        }
+      },
+      {
+        test: /\.mp4$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 1000000000,
+            name: "[name].[contenthash].[ext]",
+            outputPath: "./assets/videos/",
             esModule: false
           }
         }
@@ -66,7 +83,6 @@ module.exports = {
             limit: 1000,
             name: "[name].[contenthash].[ext]",
             outputPath: "./assets/images/icons/",
-            publicPath: "./assets/images/icons/",
             esModule: false
           }
         }
@@ -79,7 +95,6 @@ module.exports = {
             limit: 10000,
             name: "[name].[contenthash].[ext]",
             outputPath: "./assets/fonts/",
-            publicPath: "../assets/fonts/",
             esModule: false
           }
         }
@@ -87,6 +102,14 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname),
+      manifest: require("./dist/vendor-manifest.json")
+    }),
+    new MiniCssExtractPlugin({
+      filename: "styles/[name].[contenthash].css",
+      chunkFilename: "styles/[id].css"
+    }),
     new HtmlWebpackPlugin({
       title: "Template Webpack React",
       favicon: "",
@@ -94,11 +117,12 @@ module.exports = {
         "theme-color": "#FFFFFF"
       },
       template: "./public/index.html",
-      filename: "./index.html",
+      filename: "./index.html"
     }),
-    new MiniCssExtractPlugin({
-      filename: "styles/[name].[contenthash].css"
-    }),
-    new CleanWebpackPlugin(),
+    new AddAssetHtmlPlugin({
+      filepath: path.resolve(__dirname, "./**/*.dll.js"),
+      outputPath: "js",
+      publicPath: "/js/"
+    })
   ]
 };

@@ -3,7 +3,6 @@ import { render } from "react-dom";
 import { AppContextProvider } from "@context";
 import App from "./App";
 
-import "normalize.css";
 import "./styles/General.scss";
 
 render(

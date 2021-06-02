@@ -31,6 +31,12 @@
       "@context": [
         "src/context/AppContext.jsx"
       ],
+      "@hooks": [
+        "src/hooks/index.js"
+      ],
+      "@hoc": [
+        "src/hoc/*"
+      ],
       "@pages/*": [
         "src/pages/*"
       ],
