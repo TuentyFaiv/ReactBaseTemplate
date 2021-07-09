@@ -1,8 +1,9 @@
 # Template Frontend with React and Webpack CSR
 
 ### Steps to intall:
-- `mkdir newProjectFolder && cd newProjectFolder`
+- `mkdir WorkSpaceFolder && cd WorkSpaceFolder`
 - `git clone git@github.com:Platimex/TemplateFrontendCSR.git`
+- `cd TemplateFrontendCSR`
 - `npm install`
 
 ### How it works?
