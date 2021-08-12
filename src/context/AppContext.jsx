@@ -5,10 +5,16 @@ import reducer from "./reducer";
 const AppContext = createContext(null);
 
 export function AppContextProvider({ children }) {
+  const storageLang = localStorage.getItem("brandlang");
+  const storageSession = localStorage.getItem("sessionId");
+  const storageUser = localStorage.getItem("user");
 
   const initialState = {
-    boot: localStorage.getItem("brandlang") ? getBoot()[localStorage.getItem("brandlang")] : getBoot()["es"],
-    lang: localStorage.getItem("brandlang") ? localStorage.getItem("brandlang") : "es"
+    boot: storageLang ? getBoot()[storageLang] : getBoot()["es"],
+    lang: storageLang || "es",
+    sessionId: storageSession || null,
+    user: storageUser ? JSON.parse(storageUser) : {},
+    onboarding: null
   };
 
   return (
