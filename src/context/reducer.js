@@ -32,6 +32,11 @@ export default function reducer(state, action) {
         user: {},
         sessionId: null
       };
+    case "CHANGE_ONBOARDING":
+      return {
+        ...state,
+        onboarding: action.payload
+      };
     default:
       return state;
   }
