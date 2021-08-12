@@ -9,6 +9,7 @@ module.exports = {
       "sweetalert",
       "react",
       "react-dom",
+      "react-helmet",
       "react-router",
       "react-router-dom"
     ]
