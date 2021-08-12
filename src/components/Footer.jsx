@@ -2,7 +2,7 @@ import React from "react";
 
 import "@stylesComponents/Footer.scss";
 
-export default function Footer(props) {
+export default function Footer() {
   return (
     <footer className="footer">
       <p className="footer__title">Footer</p>
