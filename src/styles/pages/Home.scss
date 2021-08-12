@@ -1,7 +1,9 @@
-@import "../Mixins.scss";
+@import "../Mixins";
 
 .home {
   &__title {
     
   }
 }
+
+@import "./reponsive/Home";

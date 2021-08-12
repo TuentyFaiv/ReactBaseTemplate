@@ -1,0 +1,8 @@
+.header {
+  @include for-size(phone) {}
+  @include for-size(phone-large) {}
+  @include for-size(tablet) {}
+  @include for-size(desktop) {}
+  @include for-size(desktop-mid) {}
+  @include for-size(desktop-big) {}
+}

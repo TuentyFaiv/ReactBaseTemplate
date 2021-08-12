@@ -1,7 +1,9 @@
-@import "../Mixins.scss";
+@import "../Mixins";
 
 .header {
   &__title {
     
   }
 }
+
+@import "./responsive/Header";
