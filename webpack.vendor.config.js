@@ -6,12 +6,14 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     vendor: [
-      "sweetalert",
       "react",
       "react-dom",
       "react-helmet",
       "react-router",
-      "react-router-dom"
+      "react-router-dom",
+      "sweetalert",
+      "formik",
+      "yup"
     ]
   },
   output: {

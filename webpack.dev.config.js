@@ -34,6 +34,7 @@ module.exports = {
       "@functions": path.resolve(__dirname, "src/common/functions.js"),
       "@routes": path.resolve(__dirname, "src/common/routes.js"),
       "@components": path.resolve(__dirname, "src/components"),
+      "@containers": path.resolve(__dirname, "src/containers"),
       "@context": path.resolve(__dirname, "src/context/AppContext.jsx"),
       "@hooks": path.resolve(__dirname, "src/hooks/index.js"),
       "@hoc": path.resolve(__dirname, "src/hoc"),
