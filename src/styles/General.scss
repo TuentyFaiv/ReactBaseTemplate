@@ -8,8 +8,24 @@
   margin: 0;
 }
 
+:root {
+  // --primary-color: ;
+  // --secondary-color: ;
+  // --accent-color: ;
+  // --success-color: ;
+  // --error-color: ;
+  // --warning-color: ;
+  // --primary-font: ;
+  // --secondary-font: ;
+}
+
 html {
   font-size: 62.5%;
+  // font-family: var(--primary-font);
+}
+body {
+  font-size: 1.6rem;
+  min-height: 100vh;
 }
 
 input,
