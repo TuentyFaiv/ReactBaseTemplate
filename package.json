@@ -44,11 +44,13 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "yup": "^0.32.9"
   }
 }
