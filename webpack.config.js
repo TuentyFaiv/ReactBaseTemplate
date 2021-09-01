@@ -27,6 +27,7 @@ module.exports = {
       "@boot": path.resolve(__dirname, "src/common/boot.js"),
       "@functions": path.resolve(__dirname, "src/common/functions.js"),
       "@routes": path.resolve(__dirname, "src/common/routes.js"),
+      "@schemas": path.resolve(__dirname, "src/common/schemas/index.js"),
       "@components": path.resolve(__dirname, "src/components"),
       "@containers": path.resolve(__dirname, "src/containers"),
       "@context": path.resolve(__dirname, "src/context/AppContext.jsx"),

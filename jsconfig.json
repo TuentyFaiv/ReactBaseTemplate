@@ -25,8 +25,14 @@
       "@routes": [
         "src/common/routes.js"
       ],
+      "@schemas": [
+        "src/common/schemas/index.js"
+      ],
       "@components/*": [
         "src/components/*"
+      ],
+      "@containers/*": [
+        "src/containers/*"
       ],
       "@context": [
         "src/context/AppContext.jsx"
