@@ -45,6 +45,8 @@
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-onchange": 0,
     "jsx-a11y/label-has-associated-control": 0,
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
     "react/prop-types": 0,
     "react/no-this-in-sfc": 0,
     "react/self-closing-comp": 0,

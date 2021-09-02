@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Layout from "@components/Layout";

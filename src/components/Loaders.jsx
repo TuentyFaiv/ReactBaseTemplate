@@ -1,5 +1,3 @@
-import React from "react";
-
 import "@stylesComponents/Loader.scss";
 
 export const Loader = ({ msg }) => (

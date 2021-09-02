@@ -1,5 +1,3 @@
-import React from "react";
-
 import "@stylesComponents/Layout.scss";
 
 import Header from "@components/Header";
