@@ -6,7 +6,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 const webpack = require("webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -104,10 +106,18 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
+        "**/*",
+        "!js/**/*dll.js",
+        "!*-manifest.json"
+      ]
+    }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname),
-      manifest: require("./dist/vendor-manifest.json")
+      manifest: path.join(__dirname, "dist", "vendor-manifest.json") // require("./dist/vendor-manifest.json")
     }),
+    new Dotenv(),
     new MiniCssExtractPlugin({
       filename: "styles/[name].[contenthash].css",
       chunkFilename: "styles/[id].css"

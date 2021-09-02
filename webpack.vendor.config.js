@@ -10,7 +10,9 @@ module.exports = {
       "react-dom",
       "react-helmet",
       "react-router",
-      "react-router-dom",
+      "react-router-dom"
+    ],
+    libraries: [
       "sweetalert",
       "formik",
       "yup"
@@ -19,12 +21,12 @@ module.exports = {
   output: {
     filename: "js/[name].[contenthash].dll.js",
     path: path.join(__dirname, "dist"),
-    library: "[name]"
+    library: "[name]_[fullhash]"
   },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DllPlugin({
-      name: "[name]",
+      name: "[name]_[fullhash]",
       path: path.join(__dirname, "dist", "[name]-manifest.json")
     })
   ]

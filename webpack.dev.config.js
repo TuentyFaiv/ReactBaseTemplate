@@ -2,6 +2,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const Dotenv = require("dotenv-webpack");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const webpack = require("webpack");
 
@@ -106,6 +107,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new Dotenv({
+      path: "./.env.development"
+    }),
     new HtmlWebpackPlugin({
       title: "Template Webpack React",
       favicon: "",
