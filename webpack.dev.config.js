@@ -16,13 +16,18 @@ module.exports = {
     publicPath: "/"
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    static: {
+      directory: path.join(__dirname, "dist"),
+      publicPath: "/"
+    },
+    client: {
+      logging: "info"
+    },
     compress: true,
     historyApiFallback: true,
     hot: true,
     open: true,
-    port: 3000,
-    publicPath: "/"
+    port: 3000
   },
   resolve: {
     extensions: [".js", ".jsx"],
@@ -58,46 +63,42 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif)$/,
-        use: {
-          loader: "url-loader",
-          options: {
-            limit: 100000,
-            name: "[name].[ext]",
-            outputPath: "./assets/images/",
-            esModule: false
-          }
-        }
+        type: "asset/resource"
       },
       {
         test: /\.mp4$/,
-        use: {
-          loader: "url-loader",
-          options: {
-            limit: 1000000000,
-            name: "[name].[ext]",
-            outputPath: "./assets/videos/",
-            esModule: false
-          }
+        type: "asset/resource",
+        generator: {
+          filename: "assets/videos/[name][ext][query]"
         }
       },
       {
         test: /\.svg$/,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/images/icons/[name][ext][query]"
+        }
+      },
+      {
+        test: /\.(woff|woff2)$/,
         use: {
           loader: "url-loader",
           options: {
-            limit: 1000,
+            limit: 10000,
+            mimetype: "application/font-woff",
             name: "[name].[ext]",
-            outputPath: "./assets/images/icons/",
+            outputPath: "./assets/fonts/",
             esModule: false
           }
         }
       },
       {
-        test: /\.(woff|woff2|ttf)$/,
+        test: /\.ttf$/,
         use: {
           loader: "url-loader",
           options: {
             limit: 10000,
+            mimetype: "application/x-font-truetype",
             name: "[name].[ext]",
             outputPath: "./assets/fonts/",
             esModule: false
@@ -125,7 +126,6 @@ module.exports = {
     new ESLintPlugin({
       extensions: ["jsx", "js"],
       fix: true
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ]
 };

@@ -57,46 +57,42 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif)$/,
-        use: {
-          loader: "url-loader",
-          options: {
-            limit: 100000,
-            name: "[name].[contenthash].[ext]",
-            outputPath: "./assets/images/",
-            esModule: false
-          }
-        }
+        type: "asset/resource"
       },
       {
         test: /\.mp4$/,
-        use: {
-          loader: "url-loader",
-          options: {
-            limit: 1000000000,
-            name: "[name].[contenthash].[ext]",
-            outputPath: "./assets/videos/",
-            esModule: false
-          }
+        type: "asset/resource",
+        generator: {
+          filename: "assets/videos/[hash][ext][query]"
         }
       },
       {
         test: /\.svg$/,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/images/icons/[hash][ext][query]"
+        }
+      },
+      {
+        test: /\.(woff|woff2)$/,
         use: {
           loader: "url-loader",
           options: {
-            limit: 1000,
+            limit: 10000,
+            mimetype: "application/font-woff",
             name: "[name].[contenthash].[ext]",
-            outputPath: "./assets/images/icons/",
+            outputPath: "./assets/fonts/",
             esModule: false
           }
         }
       },
       {
-        test: /\.(woff|woff2|ttf)$/,
+        test: /\.ttf$/,
         use: {
           loader: "url-loader",
           options: {
             limit: 10000,
+            mimetype: "application/x-font-truetype",
             name: "[name].[contenthash].[ext]",
             outputPath: "./assets/fonts/",
             esModule: false
