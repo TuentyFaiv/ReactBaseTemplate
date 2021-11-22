@@ -51,6 +51,7 @@
     "react/no-this-in-sfc": 0,
     "react/self-closing-comp": 0,
     "react/jsx-props-no-spreading": 0,
+    "react/function-component-definition": 0,
     "react/jsx-filename-extension": [
       1,
       {
