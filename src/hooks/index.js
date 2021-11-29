@@ -1,5 +1,4 @@
 import useModal from "./useModal";
+import useGetCountry from "./useGetCountry";
 
-const useOtherCustomHook = () => console.log("Change for other");
-
-export { useModal, useOtherCustomHook };
+export { useModal, useGetCountry };
