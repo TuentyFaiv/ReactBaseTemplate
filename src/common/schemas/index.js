@@ -1,3 +1,8 @@
-import { LoginSchema, RegisterSchema, ForgotSchema } from "./auth";
+import { SigninSchema, SignupSchema, ForgotSchema, DEFAULT_SIGNIN_VALUES } from "./auth";
 
-export { LoginSchema, RegisterSchema, ForgotSchema };
+export {
+  SigninSchema,
+  SignupSchema,
+  ForgotSchema,
+  DEFAULT_SIGNIN_VALUES
+};
