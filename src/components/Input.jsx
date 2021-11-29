@@ -1,30 +1,38 @@
-import { useField } from "formik";
+import { Field, ErrorMessage } from "formik";
+import withField from "@hoc/withField";
 
 import "@stylesComponents/Input.scss";
 
-const Input = ({ label, inputRef = null, readonly = false, setFieldValue = null, ...props }) => {
-  const [field, meta] = useField(props);
-  const error = Boolean(meta.touched && meta.error);
+const Input = ({ error, field, ...props }) => (
+  <input
+    id={props.id || props.name}
+    className="input__input"
+    data-error={error}
+    {...field}
+    {...props}
+  />
+);
 
-  return (
-    <label htmlFor={props.id || props.name} ref={inputRef} data-readonly={readonly} className="input">
-      <input
-        id={props.name}
-        className="input__input"
-        data-error={error}
-        {...field}
-        {...props}
-      />
-      <p
-        className="input__text"
-        title={meta.error}
-        data-error={error}
-      >
-        {label}
-        {error ? ` | ${meta.error}` : null}
-      </p>
-    </label>
-  );
-};
+const Area = ({ error, field, ...props }) => (
+  <textarea
+    id={props.id || props.name}
+    data-error={error}
+    className="input_area"
+    {...field}
+    {...props}
+  />
+);
 
-export default Input;
+export const Chechbox = ({ name, label, checked }) => (
+  <label htmlFor={name} data-checked={checked} className="input input--check">
+    <Field type="checkbox" id={name} name={name} className="input__checkbox" />
+    <ErrorMessage component="span" name={name} className="input__checkbox-error" />
+    <span className="input__text">
+      {label}
+    </span>
+  </label>
+);
+
+export const TextArea = withField(Area);
+
+export default withField(Input);

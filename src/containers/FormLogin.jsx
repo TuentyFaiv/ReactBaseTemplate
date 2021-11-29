@@ -1,48 +1,61 @@
+import { useTranslation } from "react-i18next";
 import { Formik, Form } from "formik";
-import { LoginSchema } from "@schemas";
+import swal from "sweetalert";
+import { SigninSchema, DEFAULT_SIGNIN_VALUES } from "@schemas";
+// import config from "@config"; // Config to get API url
+import { useAppContext } from "@context";
 
 import Input from "@components/Input";
 
-export default function FormLogin({ boot: { login: boot, formik: bootFormik } }) {
+export default function FormLogin() {
+  const { t } = useTranslation("formik", { useSuspense: false });
+  const { dispatch } = useAppContext();
 
-  const handleSubmit = async (values) => {
+  const formTranslations = {
+    required: t("required")
+  };
+
+  const handleSubmit = async (values, actions) => {
     try {
-      console.log(values);
+      actions.setSubmitting(true);
+
+      // Here should put the fetch() with await
+
+      actions.setSubmitting(false);
+      actions.resetForm({ values: DEFAULT_SIGNIN_VALUES });
+
+      dispatch({ type: "SIGNIN" }); // Add payload property to signin
     } catch (error) {
-      console.error(error);
+      actions.setSubmitting(false);
+      swal("Error!", t(error.message, { ns: "errors" }) || error.message, "error");
     }
   };
 
   return (
     <Formik
-      initialValues={{
-        email: "",
-        password: ""
-      }}
-      validationSchema={LoginSchema(bootFormik)}
-      onSubmit={(values) => {
-        handleSubmit(values);
-      }}
+      initialValues={DEFAULT_SIGNIN_VALUES}
+      validationSchema={SigninSchema(formTranslations)}
+      onSubmit={handleSubmit}
     >
-      {({ isSubmitting, errors }) => (
+      {({ isSubmitting }) => (
         <Form>
           <Input
-            label={boot.email}
+            label={t("email")}
             name="email"
             type="text"
-            placeholder={boot.email}
+            placeholder={t("email")}
           />
           <Input
-            label={boot.passowrd}
+            label={t("password")}
             name="password"
             type="password"
-            placeholder={boot.passowrd}
+            placeholder={t("password")}
           />
           <button
             type="submit"
-            disabled={(isSubmitting || Object.keys(errors).length > 0)}
+            disabled={(isSubmitting)}
           >
-            {boot.submit}
+            {t("signin-submit")}
           </button>
         </Form>
       )}
