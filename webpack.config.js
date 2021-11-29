@@ -7,6 +7,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
+const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
@@ -26,9 +27,8 @@ module.exports = {
       "@icons": path.resolve(__dirname, "src/assets/images/icons"),
       "@videos": path.resolve(__dirname, "src/assets/videos"),
       "@fonts": path.resolve(__dirname, "src/assets/fonts"),
-      "@boot": path.resolve(__dirname, "src/common/boot.js"),
       "@functions": path.resolve(__dirname, "src/common/functions.js"),
-      "@routes": path.resolve(__dirname, "src/common/routes.js"),
+      "@config": path.resolve(__dirname, "src/common/config.js"),
       "@schemas": path.resolve(__dirname, "src/common/schemas/index.js"),
       "@components": path.resolve(__dirname, "src/components"),
       "@containers": path.resolve(__dirname, "src/containers"),
@@ -131,6 +131,14 @@ module.exports = {
       filepath: path.resolve(__dirname, "./**/*.dll.js"),
       outputPath: "js",
       publicPath: "/js/"
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "src/common/locales",
+          to: path.resolve(__dirname, "dist/locales")
+        }
+      ]
     })
   ]
 };

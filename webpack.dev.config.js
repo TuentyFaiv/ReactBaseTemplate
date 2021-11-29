@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
 const ESLintPlugin = require("eslint-webpack-plugin");
-const webpack = require("webpack");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   devtool: "source-map",
@@ -36,9 +36,8 @@ module.exports = {
       "@icons": path.resolve(__dirname, "src/assets/images/icons"),
       "@videos": path.resolve(__dirname, "src/assets/videos"),
       "@fonts": path.resolve(__dirname, "src/assets/fonts"),
-      "@boot": path.resolve(__dirname, "src/common/boot.js"),
       "@functions": path.resolve(__dirname, "src/common/functions.js"),
-      "@routes": path.resolve(__dirname, "src/common/routes.js"),
+      "@config": path.resolve(__dirname, "src/common/config.js"),
       "@schemas": path.resolve(__dirname, "src/common/schemas/index.js"),
       "@components": path.resolve(__dirname, "src/components"),
       "@containers": path.resolve(__dirname, "src/containers"),
@@ -112,7 +111,7 @@ module.exports = {
       path: "./.env.development"
     }),
     new HtmlWebpackPlugin({
-      title: "Template Webpack React",
+      title: "Template Webpack React | Developer mode",
       favicon: "",
       meta: {
         "theme-color": "#FFFFFF"
@@ -126,6 +125,14 @@ module.exports = {
     new ESLintPlugin({
       extensions: ["jsx", "js"],
       fix: true
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "src/common/locales",
+          to: path.resolve(__dirname, "dist/locales")
+        }
+      ]
     })
   ]
 };

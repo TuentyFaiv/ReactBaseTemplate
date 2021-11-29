@@ -16,14 +16,11 @@
       "@fonts/*": [
         "src/assets/fonts/*"
       ],
-      "@boot": [
-        "src/common/boot.js"
-      ],
       "@functions": [
         "src/common/functions.js"
       ],
-      "@routes": [
-        "src/common/routes.js"
+      "@config": [
+        "src/common/config.js"
       ],
       "@schemas": [
         "src/common/schemas/index.js"
@@ -40,7 +37,7 @@
       "@hooks": [
         "src/hooks/index.js"
       ],
-      "@hoc": [
+      "@hoc/*": [
         "src/hoc/*"
       ],
       "@pages/*": [
