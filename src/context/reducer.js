@@ -1,18 +1,8 @@
-import getBoot from "@boot";
-
 const DEFAULT_IMAGE = "";
 
 export default function reducer(state, action) {
   switch (action.type) {
-    case "CHANGE_LANGUAGE":
-      const langValidation = state.lang === "en" ? "es" : "en";
-      localStorage.setItem("brandlang", langValidation);
-      return {
-        ...state,
-        boot: getBoot()[langValidation],
-        lang: langValidation
-      };
-    case "LOGIN":
+    case "SIGNIN":
       const { sessionId, onboarding, profileImage: imageUrl, ...defaultUser } = action.payload;
       const profileImage = (imageUrl === "" || imageUrl === null || imageUrl === undefined) ? DEFAULT_IMAGE : imageUrl;
       const user = { ...defaultUser, profileImage };
@@ -24,7 +14,7 @@ export default function reducer(state, action) {
         sessionId,
         onboarding
       };
-    case "LOGOUT":
+    case "SIGNOUT":
       localStorage.removeItem("user");
       localStorage.removeItem("sessionId");
       return {
