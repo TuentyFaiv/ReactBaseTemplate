@@ -111,8 +111,8 @@ module.exports = {
       path: "./.env.development"
     }),
     new HtmlWebpackPlugin({
-      title: "Template Webpack React | Developer mode",
-      favicon: "",
+      title: "¡Díselo a mi brillante trasero metálico!",
+      favicon: "./public/favicon-dev.svg",
       meta: {
         "theme-color": "#FFFFFF"
       },

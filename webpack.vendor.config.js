@@ -9,11 +9,15 @@ module.exports = {
       "react",
       "react-dom",
       "react-helmet",
-      "react-router-dom"
+      "react-i18next",
+      "react-router-dom",
+      "formik"
     ],
     libraries: [
+      "i18next",
+      "i18next-browser-languagedetector",
+      "i18next-http-backend",
       "sweetalert",
-      "formik",
       "yup"
     ]
   },
@@ -25,6 +29,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DllPlugin({
+      context: path.join(__dirname),
       name: "[name]_[fullhash]",
       path: path.join(__dirname, "dist", "[name]-manifest.json")
     })

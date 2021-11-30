@@ -13,6 +13,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
+  dependencies: ["vendor", "libraries"],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/[name].[contenthash].js",
@@ -42,7 +43,8 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()]
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    moduleIds: "named"
   },
   module: {
     rules: [
@@ -111,7 +113,11 @@ module.exports = {
     }),
     new webpack.DllReferencePlugin({
       context: path.join(__dirname),
-      manifest: path.join(__dirname, "dist", "vendor-manifest.json") // require("./dist/vendor-manifest.json")
+      manifest: path.join(__dirname, "dist", "vendor-manifest.json")
+    }),
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname),
+      manifest: path.join(__dirname, "dist", "libraries-manifest.json")
     }),
     new Dotenv(),
     new MiniCssExtractPlugin({

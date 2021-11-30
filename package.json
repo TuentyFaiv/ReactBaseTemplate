@@ -8,7 +8,7 @@
     "build:project": "webpack --config ./webpack.config.js --mode production",
     "build": "npm run build:vendor && npm run build:project",
     "start": "webpack serve --config ./webpack.dev.config.js --mode development",
-    "analyzer": "npx webpack --profile --json > stats.json && npx webpack-bundle-analyzer stats.json"
+    "analyzer": "npx webpack --profile --json > stats.json && npx webpack-bundle-analyzer stats.json ./dist"
   },
   "author": "Tonalli López",
   "license": "ISC",
@@ -37,7 +37,7 @@
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^2.2.2",
     "node-sass": "^6.0.1",
-    "sass-loader": "^12.1.0",
+    "sass-loader": "^12.3.0",
     "terser-webpack-plugin": "^5.1.1",
     "url-loader": "^4.1.1",
     "webpack": "^5.33.2",
