@@ -11,7 +11,16 @@ i18n
     debug: process.env.NODE_ENV === "development",
     fallbackLng: "es",
     supportedLngs: ["es", "en-US"],
-    ns: ["translation", "formik", "errors"],
+    ns: [
+      "translation",
+      "formik",
+      "errors",
+      "header",
+      "footer",
+      "modal",
+      "swal",
+      "terms"
+    ],
     nsSeparator: false,
     load: "currentOnly",
     interpolation: {

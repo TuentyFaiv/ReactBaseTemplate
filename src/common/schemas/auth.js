@@ -18,9 +18,21 @@ export const SignupSchema = (boot) => Yup.object().shape({
   phoneNumber: Yup.string().required(boot.required),
   phoneCode: Yup.string().required(boot.required),
   password: Yup.string().required(boot.required),
-  passwordConfirm: Yup.string().required(boot.required),
+  confirmPassword: Yup.string().required(boot.required),
   terms: Yup.boolean().oneOf([true], boot.requiredTerms)
 });
+
+export const DEFAULT_SIGNUP_VALUES = {
+  firstName: "",
+  lastName: "",
+  country: "",
+  email: "",
+  phoneNumber: "",
+  phoneCode: "",
+  password: "",
+  confirmPassword: "",
+  terms: false
+};
 
 export const ForgotSchema = (boot) => Yup.object().shape({
   email: Yup.string().required(boot.required)

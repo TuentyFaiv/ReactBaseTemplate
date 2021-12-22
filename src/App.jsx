@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useAppContext } from "@context";
 
 import Layout from "@components/Layout";
 import { LoaderPage } from "@components/Loaders";
@@ -7,10 +8,14 @@ import { LoaderPage } from "@components/Loaders";
 const Home = lazy(() => import("@pages/Home"));
 
 export default function App() {
+  const { global: { user, sessionId } } = useAppContext();
+
+  const authenticated = !(JSON.stringify(user) === JSON.stringify({}) && sessionId === null);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout auth={authenticated} />}>
           <Route
             index
             element={(
@@ -20,6 +25,7 @@ export default function App() {
             )}
           />
         </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
