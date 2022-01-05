@@ -8,6 +8,8 @@
     "build:project": "webpack --config ./webpack.config.js --mode production",
     "build": "npm run build:vendor && npm run build:project",
     "start": "webpack serve --config ./webpack.dev.config.js --mode development",
+    "deploy": "vercel --prod",
+    "install:vercel": "npm i -g vercel",
     "analyzer": "npx webpack --profile --json > stats.json && npx webpack-bundle-analyzer stats.json ./dist"
   },
   "author": "Tonalli López",
