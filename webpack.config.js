@@ -31,6 +31,7 @@ module.exports = {
       "@functions": path.resolve(__dirname, "src/common/functions.js"),
       "@config": path.resolve(__dirname, "src/common/config.js"),
       "@schemas": path.resolve(__dirname, "src/common/schemas/index.js"),
+      "@services": path.resolve(__dirname, "src/common/services/index.js"),
       "@components": path.resolve(__dirname, "src/components"),
       "@containers": path.resolve(__dirname, "src/containers"),
       "@context": path.resolve(__dirname, "src/context/AppContext.jsx"),
