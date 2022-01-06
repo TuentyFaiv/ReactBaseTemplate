@@ -25,6 +25,9 @@
       "@schemas": [
         "src/common/schemas/index.js"
       ],
+      "@services": [
+        "src/common/services/index.js"
+      ],
       "@components/*": [
         "src/components/*"
       ],

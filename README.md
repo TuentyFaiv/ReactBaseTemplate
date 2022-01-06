@@ -22,6 +22,12 @@ This template is made in React for UI, i18n for the locales, Formik for the logi
 - `npm run build:vendor` to build only the vendor
 - `npm run build:project` to build only the project
 
+## Environment variables
+To use environment variables copy the file `.env.example` two times and rename one as `.env.development` and the other as `.env`, the first is for development mode and the second for production mode.
+
+> ### Note:
+> Never put variables in `.env.example`
+
 ## Folder architecture
 
 > - public/

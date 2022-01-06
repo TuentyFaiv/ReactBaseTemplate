@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Formik, Form } from "formik";
 import swal from "sweetalert";
 import { SigninSchema, DEFAULT_SIGNIN_VALUES } from "@schemas";
-// import config from "@config"; // Config to get API url
+// import { signin } from "@services"; // Service fetch to signin
 import { useAppContext } from "@context";
 
 import Input from "@components/Input";
@@ -19,15 +19,15 @@ export default function FormLogin() {
     try {
       actions.setSubmitting(true);
 
-      // Here should put the fetch() with await
+      // Here should put the signin() with await
 
-      actions.setSubmitting(false);
       actions.resetForm({ values: DEFAULT_SIGNIN_VALUES });
 
       dispatch({ type: "SIGNIN" }); // Add payload property to signin
     } catch (error) {
-      actions.setSubmitting(false);
       swal("Error!", t(error.message, { ns: "errors" }) || error.message, "error");
+    } finally {
+      actions.setSubmitting(false);
     }
   };
 
