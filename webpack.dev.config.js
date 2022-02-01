@@ -21,7 +21,11 @@ module.exports = {
       publicPath: "/"
     },
     client: {
-      logging: "info"
+      logging: "info",
+      overlay: {
+        errors: true,
+        warnings: false
+      }
     },
     compress: true,
     historyApiFallback: true,
@@ -30,7 +34,7 @@ module.exports = {
     port: 3000
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", ".scss", ".svg", ".png", ".jpg"],
     alias: {
       "@images": path.resolve(__dirname, "src/assets/images"),
       "@icons": path.resolve(__dirname, "src/assets/images/icons"),
