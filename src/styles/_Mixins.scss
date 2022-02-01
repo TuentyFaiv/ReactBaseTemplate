@@ -11,12 +11,12 @@
     @media (max-width: 425px) {
       @content;
     }
-  } @else if $size == tablet-small {
-    @media (max-width: 635px) {
-      @content;
-    }
   } @else if $size == phone-xbig {
     @media (max-width: 535px) {
+      @content;
+    }
+  } @else if $size == tablet-small {
+    @media (max-width: 635px) {
       @content;
     }
   } @else if $size == tablet-portrait {
@@ -45,15 +45,18 @@
     }
   }
 }
-@mixin flex($justify) {
+@mixin flex($justify, $gap: false) {
   display: flex;
   justify-content: $justify;
   align-items: center;
+  @if $gap {
+    gap: $gap;
+  }
 }
 @mixin grid($columns, $gap) {
   display: grid;
-  grid-template-columns: ($columns);
-  grid-gap: ($gap);
+  grid-template-columns: $columns;
+  gap: $gap;
 }
 @mixin text($size, $weight: initial, $line-height: initial, $align: initial) {
   font-style: normal;

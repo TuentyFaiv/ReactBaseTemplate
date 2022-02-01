@@ -5,6 +5,7 @@ import { useAppContext } from "@context";
 import Layout from "@components/Layout";
 import { LoaderPage } from "@components/Loaders";
 
+// import Home from "@pages/Home"; // Without lazy and Suspense
 const Home = lazy(() => import("@pages/Home"));
 
 export default function App() {
@@ -24,6 +25,8 @@ export default function App() {
               </Suspense>
             )}
           />
+          {/* <Route index element={<Home />} /> */}
+          {/* Without lazy and Suspense 👆️ */}
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
