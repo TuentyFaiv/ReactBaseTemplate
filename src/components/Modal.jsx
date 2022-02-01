@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import "@stylesComponents/Modal.scss";
 
 // import CloseIcon from "@icons/icon-close-modal.svg";
-const root = document.getElementById("modal-root");
 
 export default function Modal({
   children,
@@ -13,6 +12,7 @@ export default function Modal({
   open,
   onClose
 }) {
+  const root = document.querySelector("#modal-root");
   const { t } = useTranslation("modal", { useSuspense: false });
 
   const {
@@ -23,6 +23,7 @@ export default function Modal({
     scroll = false
   } = config;
 
+  if (!root) throw new Error("There is no tag with the id \"modal-root\"");
   if (!open) return null;
 
   return createPortal(
