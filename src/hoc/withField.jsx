@@ -4,7 +4,7 @@ import { useField } from "formik";
 const withField = (InputComponent) => (
   // eslint-disable-next-line react/display-name
   forwardRef(({ label, ...props }, ref) => {
-    const [field, meta] = useField(props);
+    const [field, meta, helpers] = useField(props);
     const error = Boolean(meta.touched && meta.error);
 
     return (
@@ -14,12 +14,14 @@ const withField = (InputComponent) => (
         data-readonly={props.readOnly}
         data-error={error}
         data-error-msg={meta.error}
+        data-disabled={props.disabled}
         className="input"
       >
         <InputComponent
           error={error}
           field={field}
           meta={meta}
+          helpers={helpers}
           label={label}
           {...props}
         />
