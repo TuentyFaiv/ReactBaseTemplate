@@ -34,13 +34,13 @@ module.exports = {
     port: 3000
   },
   resolve: {
-    extensions: [".js", ".jsx", ".scss", ".svg", ".png", ".jpg"],
+    extensions: [".js", ".jsx", ".scss", ".svg", ".png", ".jpg", ".webp"],
     alias: {
       "@images": path.resolve(__dirname, "src/assets/images"),
       "@icons": path.resolve(__dirname, "src/assets/images/icons"),
       "@videos": path.resolve(__dirname, "src/assets/videos"),
       "@fonts": path.resolve(__dirname, "src/assets/fonts"),
-      "@functions": path.resolve(__dirname, "src/common/functions.js"),
+      "@utils": path.resolve(__dirname, "src/common/utils.js"),
       "@config": path.resolve(__dirname, "src/common/config.js"),
       "@schemas": path.resolve(__dirname, "src/common/schemas/index.js"),
       "@services": path.resolve(__dirname, "src/common/services/index.js"),

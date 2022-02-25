@@ -1,6 +1,11 @@
 import {
   signin,
-  signup
+  signup,
+  forgot
 } from "./auth";
 
-export { signin, signup };
+export {
+  signin,
+  signup,
+  forgot
+};

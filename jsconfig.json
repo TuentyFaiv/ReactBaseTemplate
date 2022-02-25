@@ -16,8 +16,8 @@
       "@fonts/*": [
         "src/assets/fonts/*"
       ],
-      "@functions": [
-        "src/common/functions.js"
+      "@utils": [
+        "src/common/utils.js"
       ],
       "@config": [
         "src/common/config.js"

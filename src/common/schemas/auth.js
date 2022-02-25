@@ -1,5 +1,13 @@
 import * as Yup from "yup";
 
+export const ForgotSchema = (boot) => Yup.object().shape({
+  email: Yup.string().required(boot.required)
+});
+
+export const DEFAULT_FORGOT_VALUES = {
+  email: ""
+};
+
 export const SigninSchema = (boot) => Yup.object().shape({
   email: Yup.string().required(boot.required),
   password: Yup.string().required(boot.required)
@@ -33,7 +41,3 @@ export const DEFAULT_SIGNUP_VALUES = {
   confirmPassword: "",
   terms: false
 };
-
-export const ForgotSchema = (boot) => Yup.object().shape({
-  email: Yup.string().required(boot.required)
-});

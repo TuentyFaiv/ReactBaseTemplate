@@ -42,6 +42,51 @@ const Area = ({ error, field, meta, helpers, ...props }) => (
   />
 );
 
+const FileInput = ({ error, field, meta, helpers, type, accept = "image/*", ...props }) => {
+  const { profile, defaultValue, alt, ...remainingProps } = props;
+  // eslint-disable-next-line no-unused-vars
+  const { onChange, onBlur, value } = field;
+  const handleSelectFile = (event) => {
+    const { files } = event.target;
+    helpers.setValue(props.multiple ? [...value, ...files] : files[0]);
+  };
+
+  if (profile) {
+    return (
+      <div className="input__profile">
+        <img
+          src={value ? URL.createObjectURL(value) : defaultValue}
+          alt={value?.name || alt}
+          className="input__profile-image"
+        />
+        <input
+          id={props.id || props.name}
+          className="input__file"
+          data-error={error}
+          type="file"
+          accept={accept}
+          onChange={handleSelectFile}
+          onBlur={onBlur}
+          {...remainingProps}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <input
+      id={props.id || props.name}
+      className="input__file"
+      data-error={error}
+      type="file"
+      accept={accept}
+      onChange={handleSelectFile}
+      onBlur={onBlur}
+      {...remainingProps}
+    />
+  );
+};
+
 const SelectInput = ({ options = [], error, field, meta, helpers, ...props }) => {
   const selectRef = useRef(null);
 
@@ -92,10 +137,14 @@ const SelectInput = ({ options = [], error, field, meta, helpers, ...props }) =>
   );
 };
 
-export const Checkbox = ({ children, name, label, label2 = null, checked }) => (
-  <label htmlFor={name} data-checked={checked} className="input input--check">
-    <Field type="checkbox" id={name} name={name} className="input__checkbox" />
-    <ErrorMessage component="span" name={name} className="input__checkbox-error" />
+export const Checkbox = ({ children, label, label2 = null, ...props }) => (
+  <label htmlFor={props.id} data-checked={props.checked} className="input input--check">
+    {props.value ? (
+      <Field type="checkbox" value={props.value} id={props.id} name={props.name} className="input__checkbox" />
+    ) : (
+      <Field type="checkbox" id={props.id} name={props.name} className="input__checkbox" />
+    )}
+    <ErrorMessage component="span" name={props.name} className="input__checkbox-error" />
     <span className="input__text input__text--check">
       {label}
       {children}
@@ -124,5 +173,6 @@ export const Radio = ({ children, name, checked, value, ...props }) => (
 
 export const TextArea = withField(Area);
 export const Select = withField(SelectInput);
+export const File = withField(FileInput);
 
 export default withField(Input);

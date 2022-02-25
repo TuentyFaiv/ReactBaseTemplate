@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 
-export default function useModal(mediaQuery = "(min-width: 0px)") {
+export default function useModal(mediaQuery = null) {
   const [modal, setModal] = useState(false);
-  const resetModal = matchMedia(mediaQuery);
+  const resetModal = matchMedia(mediaQuery ?? "(min-width: 0px)");
 
   const toogleModal = useCallback((custom) => {
-    if (typeof custom !== "undefined" && typeof custom === "boolean") {
+    if (typeof custom === "boolean") {
       setModal(custom);
     } else {
       setModal((prevModal) => !prevModal);
@@ -20,22 +20,22 @@ export default function useModal(mediaQuery = "(min-width: 0px)") {
         html.style.overflow = "hidden";
         body.style.overflow = "hidden";
       } else {
-        html.style.overflow = "initial";
-        body.style.overflow = "initial";
+        html.style.overflow = "";
+        body.style.overflow = "";
       }
     };
     const listener = (event) => {
       if (modal && !event.matches) setModal(false);
-      disableScroll(event);
+      if (mediaQuery !== null) disableScroll(event);
     };
     resetModal.addListener(listener);
 
-    disableScroll(resetModal);
+    if (mediaQuery !== null) disableScroll(resetModal);
 
     return () => {
       resetModal.removeListener(listener);
     };
-  }, [modal, resetModal]);
+  }, [modal, resetModal, mediaQuery]);
 
   return [modal, toogleModal];
 }

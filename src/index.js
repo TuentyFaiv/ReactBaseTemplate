@@ -10,7 +10,6 @@ import "./styles/General.scss";
 
 render(
   <StrictMode>
-
     <AppContextProvider>
       <I18nextProvider i18n={i18n}>
         <App />

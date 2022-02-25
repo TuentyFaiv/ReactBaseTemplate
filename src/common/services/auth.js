@@ -1,7 +1,11 @@
-export const signin = () => {
+export const signin = async () => {
 
 };
 
-export const signup = () => {
+export const signup = async () => {
+
+};
+
+export const forgot = async () => {
 
 };

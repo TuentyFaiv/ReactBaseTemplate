@@ -3,9 +3,10 @@ import { useField } from "formik";
 
 const withField = (InputComponent) => (
   // eslint-disable-next-line react/display-name
-  forwardRef(({ label, ...props }, ref) => {
+  forwardRef(({ label, file, ...props }, ref) => {
     const [field, meta, helpers] = useField(props);
     const error = Boolean(meta.touched && meta.error);
+    const fileStyles = file ? " input--file" : "";
 
     return (
       <label
@@ -15,7 +16,7 @@ const withField = (InputComponent) => (
         data-error={error}
         data-error-msg={meta.error}
         data-disabled={props.disabled}
-        className="input"
+        className={`input${fileStyles}`}
       >
         <InputComponent
           error={error}
@@ -29,9 +30,9 @@ const withField = (InputComponent) => (
           className="input__text"
           title={meta.error}
           data-error={error}
+          data-error-msg={error ? ` | ${meta.error}` : null}
         >
           {label}
-          {error ? ` | ${meta.error}` : null}
         </p>
       </label>
     );

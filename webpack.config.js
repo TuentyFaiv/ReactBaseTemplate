@@ -28,7 +28,7 @@ module.exports = {
       "@icons": path.resolve(__dirname, "src/assets/images/icons"),
       "@videos": path.resolve(__dirname, "src/assets/videos"),
       "@fonts": path.resolve(__dirname, "src/assets/fonts"),
-      "@functions": path.resolve(__dirname, "src/common/functions.js"),
+      "@utils": path.resolve(__dirname, "src/common/utils.js"),
       "@config": path.resolve(__dirname, "src/common/config.js"),
       "@schemas": path.resolve(__dirname, "src/common/schemas/index.js"),
       "@services": path.resolve(__dirname, "src/common/services/index.js"),
@@ -59,14 +59,14 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|webp)$/,
         type: "asset/resource"
       },
       {
         test: /\.mp4$/,
         type: "asset/resource",
         generator: {
-          filename: "assets/videos/[hash][ext][query]"
+          filename: "assets/videos/[name][ext][query]"
         }
       },
       {
@@ -127,7 +127,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: "Template Webpack React",
-      favicon: "",
+      favicon: "./public/favicon.svg",
       meta: {
         "theme-color": "#FFFFFF"
       },

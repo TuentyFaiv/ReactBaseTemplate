@@ -29,6 +29,10 @@
       "dest": "/$1.jpg"
     },
     {
+      "src": "(.*).webp",
+      "dest": "/$1.webp"
+    },
+    {
       "src": "(.*).gif",
       "dest": "/$1.gif"
     },
