@@ -1,10 +1,12 @@
 import { forwardRef } from "react";
 import { useField } from "formik";
+import { useDatas } from "@hooks";
 
 const withField = (InputComponent) => (
   // eslint-disable-next-line react/display-name
-  forwardRef(({ label, file, ...props }, ref) => {
+  forwardRef(({ label, file, data = {}, ...props }, ref) => {
     const [field, meta, helpers] = useField(props);
+    const datas = useDatas(data);
     const error = Boolean(meta.touched && meta.error);
     const fileStyles = file ? " input--file" : "";
 
@@ -17,6 +19,7 @@ const withField = (InputComponent) => (
         data-error-msg={meta.error}
         data-disabled={props.disabled}
         className={`input${fileStyles}`}
+        {...datas}
       >
         <InputComponent
           error={error}

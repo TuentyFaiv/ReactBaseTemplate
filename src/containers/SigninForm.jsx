@@ -5,9 +5,9 @@ import { SigninSchema, DEFAULT_SIGNIN_VALUES } from "@schemas";
 // import { signin } from "@services"; // Service fetch to signin
 import { useAppContext } from "@context";
 
-import Input from "@components/Input";
+import { Input } from "@components";
 
-export default function FormLogin() {
+export default function SigninForm() {
   const { t } = useTranslation("formik", { useSuspense: false });
   const { dispatch } = useAppContext();
 

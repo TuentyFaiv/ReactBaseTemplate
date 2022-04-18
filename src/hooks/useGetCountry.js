@@ -8,6 +8,7 @@ export default function useGetCountry() {
     code: "",
     emoji: ""
   });
+  const [error, setError] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -21,12 +22,11 @@ export default function useGetCountry() {
           code: country.code,
           emoji: country.flag.emoji
         }));
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+      } catch (err) {
+        setError(err.message);
       }
     })();
   }, []);
 
-  return countryState;
+  return { country: countryState, error };
 }

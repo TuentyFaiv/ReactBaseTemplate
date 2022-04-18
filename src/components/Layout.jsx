@@ -3,8 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 
 import "@stylesComponents/Layout.scss";
 
-import Header from "@components/Header";
-import Footer from "@components/Footer";
+import { Header, Footer } from "@components";
 
 export default function Layout({ auth }) {
   const { pathname } = useLocation();
