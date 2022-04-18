@@ -2,8 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAppContext } from "@context";
 
-import Layout from "@components/Layout";
-import { LoaderPage } from "@components/Loaders";
+import { Layout, LoaderPage } from "@components";
 
 // import Home from "@pages/Home"; // Without lazy and Suspense
 const Home = lazy(() => import("@pages/Home"));

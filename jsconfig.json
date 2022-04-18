@@ -28,11 +28,11 @@
       "@services": [
         "src/common/services/index.js"
       ],
-      "@components/*": [
-        "src/components/*"
+      "@components": [
+        "src/components/index.js"
       ],
-      "@containers/*": [
-        "src/containers/*"
+      "@containers": [
+        "src/containers/index.js"
       ],
       "@context": [
         "src/context/AppContext.jsx"
@@ -40,8 +40,8 @@
       "@hooks": [
         "src/hooks/index.js"
       ],
-      "@hoc/*": [
-        "src/hoc/*"
+      "@hoc": [
+        "src/hoc/index.js"
       ],
       "@pages/*": [
         "src/pages/*"

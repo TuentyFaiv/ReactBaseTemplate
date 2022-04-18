@@ -1,10 +1,10 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, memo } from "react";
 import { Field, ErrorMessage } from "formik";
-import withField from "@hoc/withField";
+import { withField } from "@hoc";
 
 import "@stylesComponents/Input.scss";
 
-import IconEye from "@icons/icon-eye.svg";
+// import IconEye from "@icons/icon-eye.svg";
 
 const Input = ({ error, field, meta, helpers, type, ...props }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +25,7 @@ const Input = ({ error, field, meta, helpers, type, ...props }) => {
           className="input__show"
           onClick={() => setShowPassword(!showPassword)}
         >
-          <img src={IconEye} alt="" className="input__show-icon" />
+          {/* <img src={IconEye} alt="" className="input__show-icon" /> */}
         </button>
       )}
     </>
@@ -87,8 +87,10 @@ const FileInput = ({ error, field, meta, helpers, type, accept = "image/*", ...p
   );
 };
 
-const SelectInput = ({ options = [], error, field, meta, helpers, ...props }) => {
+const SelectInput = ({ options = [], error, field, meta, helpers, value = null, ...props }) => {
+  const { onSelect } = props;
   const selectRef = useRef(null);
+  const validateValue = options.find(({ value: valueOption }) => (valueOption === meta.value))?.label || props.withoutValue;
 
   const handleCloseSelect = () => {
     if (selectRef.current.dataset.active) {
@@ -102,7 +104,7 @@ const SelectInput = ({ options = [], error, field, meta, helpers, ...props }) =>
     const option = event.target;
     if (!option.classList.contains("input__select")) {
       const valueSelected = option.dataset.value;
-      if (props.onSelect) props.onSelect(valueSelected);
+      if (onSelect) onSelect(valueSelected);
       helpers.setValue(valueSelected);
       selectRef.current.dataset.active = false;
     } else {
@@ -110,6 +112,13 @@ const SelectInput = ({ options = [], error, field, meta, helpers, ...props }) =>
       selectRef.current.lastElementChild.scrollTo(0, 0);
     }
   };
+
+  useEffect(() => {
+    if (options.length === 1 && field.value !== options[0].value) {
+      helpers.setValue(options[0].value);
+      if (onSelect) onSelect(options[0].value);
+    }
+  }, [options, field, helpers, onSelect]);
 
   return (
     <div
@@ -120,7 +129,7 @@ const SelectInput = ({ options = [], error, field, meta, helpers, ...props }) =>
       tabIndex={0}
     >
       <p className="input__select-value">
-        {options.find(({ value }) => (value === meta.value))?.label || props.withoutValue}
+        {value ?? validateValue}
       </p>
       <div className="input__select-options" onMouseLeave={handleCloseSelect}>
         {options.map((option) => (
@@ -172,7 +181,7 @@ export const Radio = ({ children, name, checked, value, ...props }) => (
 );
 
 export const TextArea = withField(Area);
-export const Select = withField(SelectInput);
+export const Select = withField(memo(SelectInput));
 export const File = withField(FileInput);
 
 export default withField(Input);
