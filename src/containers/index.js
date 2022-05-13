@@ -1,5 +1,3 @@
-import SigninForm from "./SigninForm";
+export { default as SigninForm } from "./SigninForm";
 
-const other = {}; // Replace for another Container
-
-export { SigninForm, other };
+export const other = {}; // Replace for another Container

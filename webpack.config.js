@@ -34,12 +34,13 @@ module.exports = {
       "@services": path.resolve(__dirname, "src/common/services/index.js"),
       "@components": path.resolve(__dirname, "src/components/index.js"),
       "@containers": path.resolve(__dirname, "src/containers/index.js"),
-      "@context": path.resolve(__dirname, "src/context/AppContext.jsx"),
+      "@context": path.resolve(__dirname, "src/context/index.js"),
       "@hooks": path.resolve(__dirname, "src/hooks/index.js"),
       "@hoc": path.resolve(__dirname, "src/hoc/index.js"),
       "@pages": path.resolve(__dirname, "src/pages"),
       "@stylesComponents": path.resolve(__dirname, "src/styles/components"),
-      "@stylesPages": path.resolve(__dirname, "src/styles/pages")
+      "@stylesPages": path.resolve(__dirname, "src/styles/pages"),
+      "@styles": path.resolve(__dirname, "src/styles/Globals.scss")
     }
   },
   optimization: {

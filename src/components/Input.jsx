@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect, memo } from "react";
+import { useRef, useState, useEffect, memo, forwardRef } from "react";
 import { Field, ErrorMessage } from "formik";
-import { withField } from "@hoc";
+import { withDatasets, withField } from "@hoc";
 
 import "@stylesComponents/Input.scss";
 
@@ -146,8 +146,14 @@ const SelectInput = ({ options = [], error, field, meta, helpers, value = null, 
   );
 };
 
-export const Checkbox = ({ children, label, label2 = null, ...props }) => (
-  <label htmlFor={props.id} data-checked={props.checked} className="input input--check">
+const CheckboxInput = ({ children, label, label2 = null, ...props }, ref) => (
+  <label
+    ref={ref}
+    htmlFor={props.id}
+    data-checked={props.checked}
+    className="input input--check"
+    {...props.datas}
+  >
     {props.value ? (
       <Field type="checkbox" value={props.value} id={props.id} name={props.name} className="input__checkbox" />
     ) : (
@@ -162,13 +168,15 @@ export const Checkbox = ({ children, label, label2 = null, ...props }) => (
   </label>
 );
 
-export const Radio = ({ children, name, checked, value, ...props }) => (
+const RadioInput = ({ children, name, checked, value, ...props }, ref) => (
   <label
+    ref={ref}
     htmlFor={props.id}
     data-checked={checked}
     data-payment={props.payment}
     className="input input--radio"
     onClick={props.onSelect}
+    {...props.datas}
   >
     <Field type="radio" id={props.id} name={name} value={value} className="input__radio" />
     <ErrorMessage component="span" name={name} className="input__radio-error" />
@@ -179,6 +187,9 @@ export const Radio = ({ children, name, checked, value, ...props }) => (
     </span>
   </label>
 );
+
+export const Checkbox = withDatasets(forwardRef(CheckboxInput));
+export const Radio = withDatasets(forwardRef(RadioInput));
 
 export const TextArea = withField(Area);
 export const Select = withField(memo(SelectInput));

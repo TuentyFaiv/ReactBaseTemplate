@@ -3,12 +3,12 @@ import { useLocation } from "react-router-dom";
 
 export default function useQuery() {
   const { search } = useLocation();
-  const query = new URLSearchParams(search);
-  const searchParams = useMemo(() => ({}), []);
+  const searchParams = new URLSearchParams(search);
+  const query = useMemo(() => ({}), []);
 
-  query.forEach((value, key) => {
-    searchParams[key] = value;
+  searchParams.forEach((value, key) => {
+    query[key] = value;
   });
 
-  return searchParams;
+  return query;
 }

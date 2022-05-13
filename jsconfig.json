@@ -35,7 +35,7 @@
         "src/containers/index.js"
       ],
       "@context": [
-        "src/context/AppContext.jsx"
+        "src/context/index.js"
       ],
       "@hooks": [
         "src/hooks/index.js"
@@ -51,6 +51,9 @@
       ],
       "@stylesPages/*": [
         "src/styles/pages/*"
+      ],
+      "@styles": [
+        "src/styles/Globals.scss"
       ],
     }
   },
