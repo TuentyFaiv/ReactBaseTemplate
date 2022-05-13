@@ -1,24 +1,15 @@
-import Footer from "./Footer";
-import Header from "./Header";
-import Input, { TextArea, Select, File, Checkbox, Radio } from "./Input";
-import Language from "./Language";
-import Layout from "./Layout";
-import { Loader, LoaderPage } from "./Loaders";
-import Modal from "./Modal";
-import ScrollLink from "./ScrollLink";
-
+export { default as Footer } from "./Footer";
+export { default as Header } from "./Header";
 export {
-  Footer,
-  Header,
-  Input,
+  default as Input,
   TextArea,
   Select,
   File,
   Checkbox,
-  Radio,
-  Language,
-  Layout,
-  Loader, LoaderPage,
-  Modal,
-  ScrollLink
-};
+  Radio
+} from "./Input";
+export { default as Language } from "./Language";
+export { default as Layout } from "./Layout";
+export { Loader, LoaderPage } from "./Loaders";
+export { default as Modal } from "./Modal";
+export { default as ScrollLink } from "./ScrollLink";

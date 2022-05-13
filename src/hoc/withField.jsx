@@ -1,9 +1,9 @@
+/* eslint-disable react/display-name */
 import { forwardRef } from "react";
 import { useField } from "formik";
 import { useDatas } from "@hooks";
 
 const withField = (InputComponent) => (
-  // eslint-disable-next-line react/display-name
   forwardRef(({ label, file, data = {}, ...props }, ref) => {
     const [field, meta, helpers] = useField(props);
     const datas = useDatas(data);
@@ -12,12 +12,13 @@ const withField = (InputComponent) => (
 
     return (
       <label
-        htmlFor={props.id || props.name}
         ref={ref}
-        data-readonly={props.readOnly}
+        htmlFor={props.id || props.name}
         data-error={error}
         data-error-msg={meta.error}
+        data-readonly={props.readOnly}
         data-disabled={props.disabled}
+        data-password={props.type === "password"}
         className={`input${fileStyles}`}
         {...datas}
       >

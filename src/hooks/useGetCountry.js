@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import config from "@config";
 
 export default function useGetCountry() {
-  const [countryState, setCountry] = useState({
+  const [country, setCountry] = useState({
     phoneCode: "",
     name: "",
     code: "",
@@ -14,13 +14,13 @@ export default function useGetCountry() {
     (async () => {
       try {
         const request = await fetch(`${config.ipregistry_url}?key=${config.ipregistry_key}`);
-        const { location: { country } } = await request.json();
+        const { location: { country: countryApi } } = await request.json();
         setCountry((prevCountry) => ({
           ...prevCountry,
-          phoneCode: `+${country.calling_code}`,
-          name: country.name,
-          code: country.code,
-          emoji: country.flag.emoji
+          phoneCode: `+${countryApi.calling_code}`,
+          name: countryApi.name,
+          code: countryApi.code,
+          emoji: countryApi.flag.emoji
         }));
       } catch (err) {
         setError(err.message);
@@ -28,5 +28,5 @@ export default function useGetCountry() {
     })();
   }, []);
 
-  return { country: countryState, error };
+  return { country: country, error };
 }

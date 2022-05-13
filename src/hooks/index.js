@@ -1,6 +1,4 @@
-import useModal from "./useModal";
-import useGetCountry from "./useGetCountry";
-import useQuery from "./useQuery";
-import useDatas from "./useDatas";
-
-export { useModal, useGetCountry, useQuery, useDatas };
+export { default as useModal } from "./useModal";
+export { default as useGetCountry } from "./useGetCountry";
+export { default as useQuery } from "./useQuery";
+export { default as useDatas } from "./useDatas";

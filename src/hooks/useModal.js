@@ -28,12 +28,12 @@ export default function useModal(mediaQuery = null) {
       if (modal && !event.matches) setModal(false);
       if (mediaQuery !== null) disableScroll(event);
     };
-    resetModal.addListener(listener);
+    resetModal.addEventListener("change", listener);
 
     if (mediaQuery !== null) disableScroll(resetModal);
 
     return () => {
-      resetModal.removeListener(listener);
+      resetModal.removeEventListener("change", listener);
     };
   }, [modal, resetModal, mediaQuery]);
 

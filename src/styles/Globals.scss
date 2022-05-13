@@ -42,3 +42,15 @@ button {
 button:active {
   transform: translateY(4px);
 }
+
+#modal-root,
+#loader-root {
+  position: absolute;
+}
+
+#modal-root {
+  z-index: 5;
+}
+#loader-root {
+  z-index: 10;
+}
