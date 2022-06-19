@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useCallback, useEffect, useState } from "react";
 import { HookModalFunc, HookModalParameters, HookModalReturn } from "@interfaces";
 
